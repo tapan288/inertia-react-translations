@@ -2,8 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Http\Request;
+use App\Lang\Lang;
 use Inertia\Middleware;
+use Illuminate\Http\Request;
+use App\Http\Resources\LanguageResource;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -34,6 +36,7 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'languages' => LanguageResource::collection(Lang::cases())
         ];
     }
 }
