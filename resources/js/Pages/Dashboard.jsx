@@ -2,7 +2,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 
 export default function Dashboard({ auth, languages }) {
-    console.log(languages);
+    // console.log(languages);
     return (
         <AuthenticatedLayout
             user={auth.user}
