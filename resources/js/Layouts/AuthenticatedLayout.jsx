@@ -3,12 +3,18 @@ import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
-import { Link, usePage } from "@inertiajs/react";
+import { Link, router, usePage } from "@inertiajs/react";
 
 export default function Authenticated({ user, header, children }) {
     const page = usePage();
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
+
+    function switchLanguage(event) {
+        router.post(route("language.switch"), {
+            language: event.target.value,
+        });
+    }
 
     return (
         <div className="min-h-screen bg-gray-100">
@@ -35,6 +41,9 @@ export default function Authenticated({ user, header, children }) {
                         <div className="hidden sm:flex sm:items-center sm:ms-6">
                             <div className="ml-3 relative">
                                 <select
+                                    onChange={($event) =>
+                                        switchLanguage($event)
+                                    }
                                     defaultValue={page.props.language}
                                     name="language"
                                     id="language"
